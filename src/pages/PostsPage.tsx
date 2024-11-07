@@ -5,7 +5,7 @@ import {useEffect} from 'react';
 import {fetchPosts} from '../features/posts/reducer';
 
 export const PostsPage = () => {
-    const items = useSelector((state: AppRootStateType) => state.posts.items);
+    const ids = useSelector((state: AppRootStateType) => state.posts.allIds);
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -14,8 +14,8 @@ export const PostsPage = () => {
 
     return (
         <div>
-            {items.map((i) => (
-                <Post key={i.id} post={i}/>
+            {ids.map((id) => (
+                <Post key={id} postId={id}/>
             ))}
         </div>
     );

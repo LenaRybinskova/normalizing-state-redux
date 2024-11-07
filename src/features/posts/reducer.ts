@@ -3,19 +3,40 @@ import {api, PostType} from '../../../src/api/api';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
-
+//было
+/*
 const state = {
     items: [
         {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
         {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
     ]
 }
+*/
+
+//стало
+/*
+const state = {
+    allIds:[1, 2],
+    byId:{
+      "1": {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
+      "2": {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
+    }
+}
+*/
 
 export const initialState = {
-    items: [] as PostType[]
+    // items: [] as PostType[],
+    allIds: [] as number[],
+    byId: {} as { [key: string]: PostType }
 };
 type InitialStateType = typeof initialState;
 
+const mapToLookup = (items: any[]) => {
+    return items.reduce((acc, item) => {
+        acc[item.id] = item;
+        return acc;
+    }, {})
+}
 
 export const postsReducer = (
     state: InitialStateType = initialState,
@@ -23,14 +44,18 @@ export const postsReducer = (
 ): InitialStateType => {
     switch (action.type) {
         case 'FETCH_POSTS_SUCCESS': {
-            return {...state, items: action.payload.posts};
+            return {
+                ...state,
+                allIds: action.payload.posts.map(p => p.id),
+                byId: mapToLookup(action.payload.posts)
+            };
         }
         case 'UPDATE_POST_TEXT': {
             return {
                 ...state,
-                items: state.items.map(p => p.id === action.payload.postId ? {...p, text: action.payload.text} : p)
-            };
-        }
+                byId: {
+                    ...state.byId,
+                    [action.payload.postId]: {...state.byId[action.payload.postId], text: action.payload.text}}}}
         default:
             return state
     }
@@ -54,7 +79,6 @@ export const updatePostSuccess = (postId: number, text: string) => {
         }
     } as const;
 };
-
 
 //TC
 export const fetchPosts = () => async (dispatch: Dispatch<any>) => {

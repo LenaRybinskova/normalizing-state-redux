@@ -1,13 +1,16 @@
 import {PostType} from '../../../api/api';
 import React, {useState} from 'react';
 import {updatePost} from '../reducer';
-import {useAppDispatch} from '../../app/store';
+import {AppRootStateType, useAppDispatch} from '../../app/store';
+import {useSelector} from 'react-redux';
 
 type Props = {
-    post: PostType;
+    postId: number;
 };
 
-export const Post = React.memo(({post}: Props) => {
+export const Post = ({postId}: Props) => {
+
+    const post = useSelector<AppRootStateType, PostType>(state => state.posts.byId[postId])
     const [editMode, setEditMode] = useState<boolean>(false);
     const [text, setText] = useState<string>(post.text);
 
@@ -34,4 +37,4 @@ export const Post = React.memo(({post}: Props) => {
             <hr/>
         </div>
     );
-})
+}
