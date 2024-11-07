@@ -4,10 +4,12 @@ import {api, PostType} from '../../../src/api/api';
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
 
-/*[
-    {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
-    {id: 2,text: 'React',likes: 11,author: {id: 21, name: 'Valera'}}
-]*/
+const state = {
+    items: [
+        {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
+        {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
+    ]
+}
 
 export const initialState = {
     items: [] as PostType[]
@@ -60,7 +62,7 @@ export const fetchPosts = () => async (dispatch: Dispatch<any>) => {
     dispatch(fetchPostsSuccess(posts));
 };
 
-export const updatePost = (postId: number, text: string) => async (dispatch:Dispatch) => {
+export const updatePost = (postId: number, text: string) => async (dispatch: Dispatch) => {
     const res = await api.updatePost(postId, text);
     dispatch(updatePostSuccess(postId, text));
 };
