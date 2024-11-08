@@ -39,7 +39,6 @@ type InitialStateType = typeof initialState;
 type LookupTableType<T> = { [key: string]: T }
 
 
-
 export const mapToLookup = <T extends { id: number }>(items: T[]): LookupTableType<T> => {
     const acc: LookupTableType<T> = {}
     return items.reduce((acc, item) => {

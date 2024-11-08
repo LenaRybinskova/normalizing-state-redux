@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
+import {updateAuthor} from '../../../../src/features/posts/authors-reducer';
 
 type Props = {
     postId: number;
@@ -14,12 +15,21 @@ export const Post = ({postId}: Props) => {
     const author = useSelector<AppRootStateType, AuthorAPIType>(state => state.authors.byId[post.authorId])
     const [editMode, setEditMode] = useState<boolean>(false);
     const [text, setText] = useState<string>(post.text);
+    const [name, setName] = useState<string>(author.name);
 
     const dispatch = useAppDispatch()
     console.log('post:', post)
     return (
         <div>
-            <b>{author.name}</b>
+            {!editMode
+                ? <b onClick={() => {
+                    setEditMode(true)
+                }}>{name}</b>
+                : <textarea value={name} onChange={(e) => setName(e.target.value)} onBlur={() => {
+                    dispatch(updateAuthor(author.id, name))
+                    setEditMode(false)
+                }}></textarea>}
+
             {!editMode && <span
                 onDoubleClick={() => setEditMode(true)}>{text}</span>}
 

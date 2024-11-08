@@ -31,6 +31,9 @@ export const api = {
     },
     updatePost(postId: number, text: string) {
         return Promise.resolve({})
-    }
+    },
+    updateAuthor(authorId: number, newName: string) {
+        return Promise.resolve({})
+    },
 }
 
