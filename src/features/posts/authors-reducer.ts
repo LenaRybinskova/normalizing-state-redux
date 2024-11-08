@@ -22,10 +22,17 @@ export const authorsReducer = (state: InitialStateType = initialState, action: R
             };
         }
         case 'UPDATE_AUTHORS_SUCCESS': {
-            return {...state,
-                byId: {...state.byId,[action.payload.authorId]:{...state.byId[action.payload.authorId], name: action.payload.newName} }};
+            return {
+                ...state,
+                byId: {
+                    ...state.byId,
+                    [action.payload.authorId]: {
+                        ...state.byId[action.payload.authorId],
+                        name: action.payload.newName
+                    }
+                }
+            };
         }
-
         default:
             return state
     }

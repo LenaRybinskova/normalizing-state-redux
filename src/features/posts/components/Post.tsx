@@ -1,5 +1,5 @@
 import {AuthorAPIType} from '../../../api/api';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
@@ -12,13 +12,17 @@ type Props = {
 export const Post = ({postId}: Props) => {
 
     const post = useSelector<AppRootStateType, PostType>(state => state.posts.byId[postId])
-    const author = useSelector<AppRootStateType, AuthorAPIType>(state => state.authors.byId[post.authorId])
+    const author = useSelector<AppRootStateType, any>(state => state.authors.byId[post.authorId])
     const [editMode, setEditMode] = useState<boolean>(false);
     const [text, setText] = useState<string>(post.text);
     const [name, setName] = useState<string>(author.name);
 
+    useEffect(() => {
+        setName(author.name)
+    }, [author])
     const dispatch = useAppDispatch()
-    console.log('post:', post)
+
+
     return (
         <div>
             {!editMode

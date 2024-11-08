@@ -17,3 +17,7 @@ export type AppAction=PostsActions | AuthorActions
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AppAction>;
 
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
+
+
+// @ts-ignore
+window.store=store
