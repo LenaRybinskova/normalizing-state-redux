@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {api, PostType} from '../../../src/api/api';
+import {api, PostAPIType} from '../../../src/api/api';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
@@ -23,19 +23,29 @@ const state = {
     }
 }
 */
+export type PostType = {
+    id: number;
+    text: string;
+    likes: number;
+    authorId: number;
+};
 
 export const initialState = {
-    // items: [] as PostType[],
     allIds: [] as number[],
     byId: {} as { [key: string]: PostType }
 };
 type InitialStateType = typeof initialState;
 
-const mapToLookup = (items: any[]) => {
+type LookupTableType<T> = { [key: string]: T }
+
+
+
+export const mapToLookup = <T extends { id: number }>(items: T[]): LookupTableType<T> => {
+    const acc: LookupTableType<T> = {}
     return items.reduce((acc, item) => {
         acc[item.id] = item;
         return acc;
-    }, {})
+    }, acc)
 }
 
 export const postsReducer = (
@@ -47,7 +57,16 @@ export const postsReducer = (
             return {
                 ...state,
                 allIds: action.payload.posts.map(p => p.id),
-                byId: mapToLookup(action.payload.posts)
+                byId: mapToLookup(action.payload.posts.map(p => {
+                    const copy: PostType = {
+                        id: p.id,
+                        likes: p.likes,
+                        text: p.text,
+                        authorId: p.author.id
+                    };
+
+                    return copy
+                }))
             };
         }
         case 'UPDATE_POST_TEXT': {
@@ -55,14 +74,17 @@ export const postsReducer = (
                 ...state,
                 byId: {
                     ...state.byId,
-                    [action.payload.postId]: {...state.byId[action.payload.postId], text: action.payload.text}}}}
+                    [action.payload.postId]: {...state.byId[action.payload.postId], text: action.payload.text}
+                }
+            }
+        }
         default:
             return state
     }
 };
 
 //AC
-export const fetchPostsSuccess = (posts: PostType[]) => {
+export const fetchPostsSuccess = (posts: PostAPIType[]) => {
     return {
         type: FETCH_POSTS_SUCCESS,
         payload: {

@@ -1,6 +1,6 @@
-import {PostType} from '../../../api/api';
+import {AuthorAPIType} from '../../../api/api';
 import React, {useState} from 'react';
-import {updatePost} from '../reducer';
+import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
 
@@ -11,6 +11,7 @@ type Props = {
 export const Post = ({postId}: Props) => {
 
     const post = useSelector<AppRootStateType, PostType>(state => state.posts.byId[postId])
+    const author = useSelector<AppRootStateType, AuthorAPIType>(state => state.authors.byId[post.authorId])
     const [editMode, setEditMode] = useState<boolean>(false);
     const [text, setText] = useState<string>(post.text);
 
@@ -18,7 +19,7 @@ export const Post = ({postId}: Props) => {
     console.log('post:', post)
     return (
         <div>
-            <b>{post.author.name}</b>
+            <b>{author.name}</b>
             {!editMode && <span
                 onDoubleClick={() => setEditMode(true)}>{text}</span>}
 

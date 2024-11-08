@@ -1,10 +1,12 @@
 import {useDispatch} from 'react-redux';
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from 'redux';
+import {applyMiddleware, combineReducers, legacy_createStore} from 'redux';
 import thunk, {ThunkDispatch} from 'redux-thunk';
-import {PostsActions, postsReducer} from '../posts/reducer';
+import {PostsActions, postsReducer} from 'features/posts/posts-reducer';
+import {authorsReducer} from '../../../src/features/posts/authors-reducer';
 
 const rootReducer = combineReducers({
-    posts: postsReducer
+    posts: postsReducer,
+    authors: authorsReducer
 });
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
