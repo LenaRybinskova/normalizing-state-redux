@@ -71,6 +71,6 @@ export const fetchPostComment = (postId: number) => async (dispatch: Dispatch) =
     dispatch(fetchPostCommentSuccess(postId, res))
 }
 
-export type UpdateAuthors = ReturnType<typeof updateAuthorsSuccess>;
+export type UpdateAuthorsSuccess = ReturnType<typeof updateAuthorsSuccess>;
 export type FetchCommentSuccess = ReturnType<typeof fetchPostCommentSuccess>;
-export type AuthorActions = UpdateAuthors | FetchCommentSuccess;
+export type AuthorActions = UpdateAuthorsSuccess | FetchCommentSuccess;

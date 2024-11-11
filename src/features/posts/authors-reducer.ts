@@ -2,6 +2,7 @@ import {AuthorAPIType} from '../../api/apiPosts';
 import {fetchPostsSuccess, mapToLookup} from './posts-reducer';
 import {Dispatch} from 'redux';
 import {authorsAPI} from '../../../src/api/apiAuthors';
+import {FetchCommentSuccess} from 'src/features/posts/comments-reducer';
 
 
 const UPDATE_AUTHORS_SUCCESS = 'UPDATE_AUTHORS_SUCCESS';
@@ -19,7 +20,9 @@ export const authorsReducer = (state: InitialStateType = initialState, action: R
             return {
                 ...state,
                 allIds: action.payload.posts.map(p => p.author.id),
-                byId: mapToLookup(action.payload.posts.map(p => p.author)),
+                byId:{...state.byId,
+                    ...mapToLookup(action.payload.posts.map(p => p.author)),  //доб авторов из постов
+                    ...mapToLookup(action.payload.posts.map(p => p.lastComments).flat().map(c =>c.author))} //доб авторов из коммент
             };
         }
         case 'UPDATE_AUTHORS_SUCCESS': {
@@ -34,10 +37,21 @@ export const authorsReducer = (state: InitialStateType = initialState, action: R
                 }
             };
         }
+        case 'FETCH_COMMENTS_SUCCESS': {
+            return {
+                ...state,
+                allIds: action.payload.comments.map(c => c.id),
+                byId: {
+                    ...state.byId, ...mapToLookup(action.payload.comments.map(c=>c.author))
+                }
+            };
+        }
+
         default:
             return state
     }
-};
+}
+
 
 //AC
 export const updateAuthorsSuccess = (authorId: number, newName: string) => {
@@ -54,4 +68,4 @@ export const updateAuthor = (authorId: number, newName: string) => async (dispat
 }
 
 export type UpdateAuthors = ReturnType<typeof updateAuthorsSuccess>;
-export type AuthorActions = UpdateAuthors;
+export type AuthorActions = UpdateAuthors | FetchCommentSuccess

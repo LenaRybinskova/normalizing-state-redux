@@ -4,6 +4,7 @@ import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
 import {updateAuthor} from '../../../../src/features/posts/authors-reducer';
+import {Comment} from '../../../../src/features/posts/components/Comment';
 
 type Props = {
     postId: number;
@@ -49,6 +50,11 @@ export const Post = ({postId}: Props) => {
                 }>{text}</textarea>}
             <br/>
             likes:{post.likes}
+            <hr/>
+            Comments:
+            <ul>
+                {post.commentsIds.map(id => <Comment key={id} id={id} />)}
+            </ul>
             <hr/>
         </div>
     );
