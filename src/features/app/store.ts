@@ -3,10 +3,12 @@ import {applyMiddleware, combineReducers, legacy_createStore} from 'redux';
 import thunk, {ThunkDispatch} from 'redux-thunk';
 import {PostsActions, postsReducer} from 'features/posts/posts-reducer';
 import {AuthorActions, authorsReducer} from '../../../src/features/posts/authors-reducer';
+import {commentsReducer} from '../../../src/features/posts/comments-reducer';
 
 const rootReducer = combineReducers({
     posts: postsReducer,
-    authors: authorsReducer
+    authors: authorsReducer,
+    comments: commentsReducer,
 });
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))

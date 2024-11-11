@@ -1,6 +1,7 @@
-import {api, AuthorAPIType} from '../../../src/api/api';
+import {AuthorAPIType} from '../../api/apiPosts';
 import {fetchPostsSuccess, mapToLookup} from './posts-reducer';
 import {Dispatch} from 'redux';
+import {authorsAPI} from '../../../src/api/apiAuthors';
 
 
 const UPDATE_AUTHORS_SUCCESS = 'UPDATE_AUTHORS_SUCCESS';
@@ -41,15 +42,15 @@ export const authorsReducer = (state: InitialStateType = initialState, action: R
 //AC
 export const updateAuthorsSuccess = (authorId: number, newName: string) => {
     return {
-        type: UPDATE_AUTHORS_SUCCESS, payload:{authorId, newName}
+        type: UPDATE_AUTHORS_SUCCESS, payload: {authorId, newName}
     } as const
 }
 
 //TC
 
-export const updateAuthor=(authorId: number, newName: string)=>async (dispatch:Dispatch)=>{
-    await api.updateAuthor(authorId,newName)
-    dispatch(updateAuthorsSuccess(authorId,newName ))
+export const updateAuthor = (authorId: number, newName: string) => async (dispatch: Dispatch) => {
+    await authorsAPI.updateAuthor(authorId, newName)
+    dispatch(updateAuthorsSuccess(authorId, newName))
 }
 
 export type UpdateAuthors = ReturnType<typeof updateAuthorsSuccess>;

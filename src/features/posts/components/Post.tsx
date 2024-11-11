@@ -1,4 +1,4 @@
-import {AuthorAPIType} from '../../../api/api';
+import {AuthorAPIType} from 'api/apiPosts';
 import React, {useEffect, useState} from 'react';
 import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';

@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {api, PostAPIType} from '../../../src/api/api';
+import {apiPosts, PostAPIType} from 'api/apiPosts';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
@@ -28,6 +28,7 @@ export type PostType = {
     text: string;
     likes: number;
     authorId: number;
+
 };
 
 export const initialState = {
@@ -47,10 +48,7 @@ export const mapToLookup = <T extends { id: number }>(items: T[]): LookupTableTy
     }, acc)
 }
 
-export const postsReducer = (
-    state: InitialStateType = initialState,
-    action: PostsActions
-): InitialStateType => {
+export const postsReducer = (state: InitialStateType = initialState, action: PostsActions): InitialStateType => {
     switch (action.type) {
         case 'FETCH_POSTS_SUCCESS': {
             return {
@@ -103,12 +101,12 @@ export const updatePostSuccess = (postId: number, text: string) => {
 
 //TC
 export const fetchPosts = () => async (dispatch: Dispatch<any>) => {
-    const posts = await api.getPosts();
+    const posts = await apiPosts.getPosts();
     dispatch(fetchPostsSuccess(posts));
 };
 
 export const updatePost = (postId: number, text: string) => async (dispatch: Dispatch) => {
-    const res = await api.updatePost(postId, text);
+    const res = await apiPosts.updatePost(postId, text);
     dispatch(updatePostSuccess(postId, text));
 };
 
