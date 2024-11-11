@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
 import {apiPosts, PostAPIType} from 'api/apiPosts';
+import {FetchCommentSuccess} from 'src/features/posts/comments-reducer';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
@@ -28,7 +29,7 @@ export type PostType = {
     text: string;
     likes: number;
     authorId: number;
-
+    commentsIds: number[]
 };
 
 export const initialState = {
@@ -59,7 +60,8 @@ export const postsReducer = (state: InitialStateType = initialState, action: Pos
                         id: p.id,
                         likes: p.likes,
                         text: p.text,
-                        authorId: p.author.id
+                        authorId: p.author.id,
+                        commentsIds: p.lastComments.map(c => c.id)
                     };
 
                     return copy
@@ -74,6 +76,10 @@ export const postsReducer = (state: InitialStateType = initialState, action: Pos
                     [action.payload.postId]: {...state.byId[action.payload.postId], text: action.payload.text}
                 }
             }
+        }
+        case 'FETCH_COMMENTS_SUCCESS': {
+            return {...state, byId: {
+                ...state.byId, [action.payload.postId] : {...state.byId[action.payload.postId], commentsIds:action.payload.comments.map(c => c.id)}} }
         }
         default:
             return state
@@ -110,6 +116,9 @@ export const updatePost = (postId: number, text: string) => async (dispatch: Dis
     dispatch(updatePostSuccess(postId, text));
 };
 
-export type PostsActions = ReturnType<typeof fetchPostsSuccess> | ReturnType<typeof updatePostSuccess>;
-;
+export type PostsActions =
+    ReturnType<typeof fetchPostsSuccess>
+    | ReturnType<typeof updatePostSuccess>
+    | FetchCommentSuccess
+    ;
 

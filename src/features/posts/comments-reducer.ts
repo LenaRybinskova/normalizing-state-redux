@@ -59,18 +59,18 @@ export const updateAuthorsSuccess = (authorId: number, newName: string) => {
     } as const
 }
 
-export const fetchPostCommentSuccess = (comments: CommentAPIType[]) => {
+export const fetchPostCommentSuccess = (postId: number, comments: CommentAPIType[]) => {
     return {
-        type: FETCH_COMMENTS_SUCCESS, payload: {comments}
+        type: FETCH_COMMENTS_SUCCESS, payload: {postId, comments}
     } as const
 }
 
 //TC
 export const fetchPostComment = (postId: number) => async (dispatch: Dispatch) => {
     const res = await apiPosts.getComments(postId)
-    dispatch(fetchPostCommentSuccess(res))
+    dispatch(fetchPostCommentSuccess(postId, res))
 }
 
 export type UpdateAuthors = ReturnType<typeof updateAuthorsSuccess>;
-export type AddCommentSuccess = ReturnType<typeof fetchPostCommentSuccess>;
-export type AuthorActions = UpdateAuthors | AddCommentSuccess;
+export type FetchCommentSuccess = ReturnType<typeof fetchPostCommentSuccess>;
+export type AuthorActions = UpdateAuthors | FetchCommentSuccess;
