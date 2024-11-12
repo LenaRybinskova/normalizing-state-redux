@@ -1,10 +1,10 @@
-import {AuthorAPIType} from 'api/apiPosts';
 import React, {useEffect, useState} from 'react';
 import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
 import {updateAuthor} from '../../../../src/features/posts/authors-reducer';
 import {Comment} from '../../../../src/features/posts/components/Comment';
+import {fetchPostComment} from '../../../../src/features/posts/comments-reducer';
 
 type Props = {
     postId: number;
@@ -53,8 +53,9 @@ export const Post = ({postId}: Props) => {
             <hr/>
             Comments:
             <ul>
-                {post.commentsIds.map(id => <Comment key={id} id={id} />)}
+                {post.commentsIds.map(id => <Comment key={id} id={id} postId={postId}/>)}
             </ul>
+            <button onClick={() => dispatch(fetchPostComment(postId))}>all comments</button>
             <hr/>
         </div>
     );
