@@ -50,12 +50,13 @@ export const commentsReducer = (state: InitialStateType = initialState, action: 
             return {...state, byId: {...state.byId, ...lookupTable}};
         }
         case 'DElETE_COMMENTS_SUCCESS': {
-            const coptState={...state.byId}
-            delete coptState[action.payload.commentId]
+            const copyState={...state.byId}
+
+            delete copyState[action.payload.commentId]
 
             return {...state,
                 allIds: state.allIds.filter(id => id !== action.payload.commentId),
-                byId: coptState
+                byId: copyState
             }
         }
         default:

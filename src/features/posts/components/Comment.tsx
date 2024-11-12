@@ -14,9 +14,7 @@ export const Comment = ({id, postId}: Props) => {
     const authorComment = useSelector<AppRootStateType, AuthorAPIType>(state => state.authors.byId[comment.authorId])
     const dispatch = useAppDispatch()
 
-    if (!comment || !authorComment) {
-        return null; // Возвращаем null, если данных нет, чтобы избежать ошибки
-    }
+console.log("authorComment:", authorComment)
     return (
         <li>
             <b>{authorComment.name}</b>

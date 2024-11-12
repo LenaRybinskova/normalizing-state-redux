@@ -50,8 +50,8 @@ export const Post = ({postId}: Props) => {
                 }>{text}</textarea>}
             <br/>
             likes:{post.likes}
-            <hr/>
-            Comments:
+
+            <div>Comments:</div>
             <ul>
                 {post.commentsIds.map(id => <Comment key={id} id={id} postId={postId}/>)}
             </ul>
