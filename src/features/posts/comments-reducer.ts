@@ -1,7 +1,7 @@
-import {apiPosts, CommentAPIType} from '../../api/apiPosts';
+import {apiPosts, CommentAPIType} from 'api/apiPosts';
 import {fetchPostsSuccess, mapToLookup} from './posts-reducer';
 import {Dispatch} from 'redux';
-import {apiComment} from '../../../src/api/apiComment';
+import {apiComment} from 'api/apiComment';
 
 export type CommentType = Omit<CommentAPIType, 'author'> & {
     authorId: number

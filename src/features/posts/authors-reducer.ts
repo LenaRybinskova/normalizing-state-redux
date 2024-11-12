@@ -1,8 +1,8 @@
-import {AuthorAPIType} from '../../api/apiPosts';
+import {AuthorAPIType} from 'api/apiPosts';
 import {fetchPostsSuccess, mapToLookup} from './posts-reducer';
 import {Dispatch} from 'redux';
-import {authorsAPI} from '../../../src/api/apiAuthors';
-import {FetchCommentSuccess} from 'src/features/posts/comments-reducer';
+import {authorsAPI} from 'api/apiAuthors';
+import {FetchCommentSuccess} from 'features/posts/comments-reducer';
 
 
 const UPDATE_AUTHORS_SUCCESS = 'UPDATE_AUTHORS_SUCCESS';

@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
 import {apiPosts, PostAPIType} from 'api/apiPosts';
-import {DeletePostCommentSuccess, FetchCommentSuccess} from 'src/features/posts/comments-reducer';
+import {DeletePostCommentSuccess, FetchCommentSuccess} from 'features/posts/comments-reducer';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';

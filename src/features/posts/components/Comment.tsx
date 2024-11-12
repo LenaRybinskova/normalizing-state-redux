@@ -1,8 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {AppRootStateType, useAppDispatch} from '../../../../src/features/app/store';
-import {CommentType, deletePostComment} from '../../../../src/features/posts/comments-reducer';
-import {AuthorAPIType} from '../../../../src/api/apiPosts';
+import {AppRootStateType, useAppDispatch} from 'features/app/store';
+import {CommentType, deletePostComment} from 'features/posts/comments-reducer';
+import {AuthorAPIType} from 'api/apiPosts';
 
 type Props = {
     id: number,
@@ -14,7 +14,7 @@ export const Comment = ({id, postId}: Props) => {
     const authorComment = useSelector<AppRootStateType, AuthorAPIType>(state => state.authors.byId[comment.authorId])
     const dispatch = useAppDispatch()
 
-console.log("authorComment:", authorComment)
+
     return (
         <li>
             <b>{authorComment.name}</b>

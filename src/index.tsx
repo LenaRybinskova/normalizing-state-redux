@@ -2,7 +2,7 @@ import React from 'react'
 import {createRoot} from 'react-dom/client'
 import './index.css'
 import App from '../src/App'
-import {store} from '../src/features/app/store';
+import {store} from 'features/app/store';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(

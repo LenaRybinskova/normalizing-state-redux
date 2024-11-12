@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {PostType, updatePost} from 'features/posts/posts-reducer';
 import {AppRootStateType, useAppDispatch} from '../../app/store';
 import {useSelector} from 'react-redux';
-import {updateAuthor} from '../../../../src/features/posts/authors-reducer';
-import {Comment} from '../../../../src/features/posts/components/Comment';
-import {fetchPostComment} from '../../../../src/features/posts/comments-reducer';
+import {updateAuthor} from 'features/posts/authors-reducer';
+import {Comment} from 'features/posts/components/Comment';
+import {fetchPostComment} from 'features/posts/comments-reducer';
 
 type Props = {
     postId: number;
