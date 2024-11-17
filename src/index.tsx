@@ -6,6 +6,6 @@ import {store} from 'features/app/store';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
+    
     <App store={store}/>
-
 );
