@@ -13,15 +13,21 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
 }
 
+textarea {
+  all: unset; /* Или используйте сброс вручную */
+  box-sizing: border-box;
+}
+
 :root {
     --font-size: 16px; 
     --primary-font: 'Nunito Sans', sans-serif;
-    --base-line-height: 1.6;
+    --base-line-height: 20px;
     --background-color: #edeef0;
     --background-post-color: #ffffff;
     --background-like-color:#f0f2f5;
     --background-like-text-color:#6b6d5d;
     --text-color:#000001;
+    --text-color-hover:#5184bf;
 }
 
 body {

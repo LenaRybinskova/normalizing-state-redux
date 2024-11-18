@@ -6,7 +6,7 @@ import { updateAuthor } from "features/posts/authors-reducer";
 import { Comment } from "features/posts/components/Comment";
 import { fetchPostComment } from "features/posts/comments-reducer";
 import styled from "styled-components";
-import likeIcon from "../../../assets/icons/like.svg";
+import { ReactComponent as LikeIcon } from "../../../assets/icons/like.svg";
 
 type Props = {
   postId: number;
@@ -15,51 +15,82 @@ type Props = {
 const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
 `;
-
 const PostHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 10px;
-  //   background-color: bisque;
 `;
 
-const CommnetsPost = styled.div`
+const PostComments = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const PostTitle = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 15px;
   align-items: center;
 
   & img {
-    width: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+  }
+
+  & span {
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+
+  & span:hover {
+    color: var(--text-color-hover);
   }
 `;
 
+const StyledTextarea = styled.textarea`
+  width: 100%;
+  height: 40px;
+  font-family: var(--primary-font);
+  font-size: var(--font-size);
+  border: none;
+  line-height: 20px;
+  padding: 10px 10px;
+  resize: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--background-like-color);
+
+  border-radius: 15px;
+`;
 const PostText = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 3px;
-`;
 
-const Likes = styled.span`
+  & span {
+    padding: 10px 10px;
+    cursor: pointer;
+  }
+
+  & span:hover {
+    color: var(--text-color-hover);
+  }
+`;
+const Likes = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 8px;
   background-color: var(--background-like-color);
-  padding: 3px 5px;
+  padding: 3px 8px;
   width: fit-content;
-  border-radius: 10px;
+  border-radius: 15px;
   color: var(--background-like-text-color);
+  margin: 8px 8px;
 
   & svg {
     width: 18px;
@@ -68,11 +99,9 @@ const Likes = styled.span`
     fill: currentColor;
   }
 `;
-
 const Line = styled.div`
   border-bottom: 1px solid var(--background-like-color);
 `;
-
 export const Post = ({ postId }: Props) => {
   const post = useSelector<AppRootStateType, PostType>(
     (state) => state.posts.byId[postId]
@@ -97,22 +126,24 @@ export const Post = ({ postId }: Props) => {
         <PostTitle>
           <img src={author.avatar} />
           {!editMode ? (
-            <b
+            <span
               onClick={() => {
                 setEditMode(true);
               }}
             >
               {name}
-            </b>
+            </span>
           ) : (
-            <textarea
+            <StyledTextarea
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setName(e.target.value)
+              }
               onBlur={() => {
                 dispatch(updateAuthor(author.id, name));
                 setEditMode(false);
               }}
-            ></textarea>
+            ></StyledTextarea>
           )}
         </PostTitle>
 
@@ -120,59 +151,31 @@ export const Post = ({ postId }: Props) => {
           {!editMode && (
             <span onDoubleClick={() => setEditMode(true)}>{text}</span>
           )}
-          <Likes>
-            <svg
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1280.000000pt"
-              height="1189.000000pt"
-              viewBox="0 0 1280.000000 1189.000000"
-              preserveAspectRatio="xMidYMid meet"
+          {editMode && (
+            <StyledTextarea
+              value={text}
+              onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+                setText(event.currentTarget.value);
+              }}
+              onBlur={() => {
+                dispatch(updatePost(post.id, text));
+                setEditMode(false);
+              }}
             >
-              <metadata>
-                Created by potrace 1.15, written by Peter Selinger 2001-2017
-              </metadata>
-              <g
-                transform="translate(0.000000,1189.000000) scale(0.100000,-0.100000)"
-                fill="currentColor"
-                stroke="none"
-              >
-                <path
-                  d="M3250 11884 c-25 -2 -106 -11 -180 -20 -1485 -172 -2704 -1295 -3001
--2764 -133 -660 -67 -1507 171 -2223 252 -753 675 -1411 1397 -2172 342 -360
-634 -630 1588 -1470 231 -203 488 -430 570 -505 1024 -920 1735 -1692 2346
--2547 l130 -183 132 0 132 1 130 192 c557 822 1212 1560 2185 2461 191 178
-408 373 1027 923 956 852 1445 1343 1841 1850 643 825 968 1603 1064 2553 19
-196 17 665 -5 835 -105 805 -441 1497 -998 2054 -557 557 -1250 894 -2054 998
--193 24 -613 24 -810 0 -733 -93 -1379 -387 -1920 -874 -191 -172 -406 -417
--535 -610 -30 -45 -57 -82 -60 -82 -3 0 -30 37 -60 82 -129 193 -344 438 -535
-610 -531 478 -1170 773 -1878 867 -146 20 -562 34 -677 24z"
-                />
-              </g>
-            </svg>
-            likes:{post.likes}
+              {text}
+            </StyledTextarea>
+          )}
+          <Likes>
+            <LikeIcon />
+            {post.likes}
           </Likes>
         </PostText>
       </PostHeader>
       <Line></Line>
-      <CommnetsPost>
-        {editMode && (
-          <textarea
-            value={text}
-            onChange={(event) => {
-              setText(event.currentTarget.value);
-            }}
-            onBlur={() => {
-              dispatch(updatePost(post.id, text));
-              setEditMode(false);
-            }}
-          >
-            {text}
-          </textarea>
-        )}
+
+      <PostComments>
         <br />
 
-        <div>Comments:</div>
         <ul>
           {post.commentsIds.map((id) => (
             <Comment key={id} id={id} postId={postId} />
@@ -181,7 +184,7 @@ export const Post = ({ postId }: Props) => {
         <button onClick={() => dispatch(fetchPostComment(postId))}>
           all comments
         </button>
-      </CommnetsPost>
+      </PostComments>
 
       <hr />
     </PostContainer>
