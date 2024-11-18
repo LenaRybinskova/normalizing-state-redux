@@ -17,8 +17,9 @@ export const GlobalStyles = createGlobalStyle`
     --font-size: 16px; 
     --primary-font: 'Nunito Sans', sans-serif;
     --base-line-height: 1.6;
-    --post-bg-color-color: #ffffff;
     --background-color: #edeef0;
+    --background-post-color: #ffffff;
+    --background-like-color:#f0f2f5;
     --text-color:#000001;
 }
 
