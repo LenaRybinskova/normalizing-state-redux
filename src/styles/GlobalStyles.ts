@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
     --background-color: #edeef0;
     --background-post-color: #ffffff;
     --background-like-color:#f0f2f5;
+    --background-like-text-color:#6b6d5d;
     --text-color:#000001;
 }
 

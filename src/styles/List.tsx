@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 900px;
+  gap: 15px;
 `;
 type Props = {
   children: React.ReactNode;
