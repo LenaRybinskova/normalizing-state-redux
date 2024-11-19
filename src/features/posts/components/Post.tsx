@@ -24,12 +24,6 @@ const PostHeader = styled.div`
   justify-content: flex-start;
 `;
 
-const PostComments = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-
 const PostTitle = styled.div`
   display: flex;
   flex-direction: row;
@@ -63,7 +57,7 @@ const StyledTextarea = styled.textarea`
   box-sizing: border-box;
   overflow: hidden;
   background-color: var(--background-like-color);
-
+  transition-duration: 0.5s;
   border-radius: 15px;
 `;
 const PostText = styled.div`
@@ -99,9 +93,38 @@ const Likes = styled.div`
     fill: currentColor;
   }
 `;
+
+const PostBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 40px;
+`;
+
+const PostBodyItems = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 3px;
+`;
+
 const Line = styled.div`
   border-bottom: 1px solid var(--background-like-color);
+  margin: 5px;
 `;
+
+const ButtonShowAllComments = styled.button`
+  display: flex;
+  background-color: transparent;
+  border: none;
+  font-family: "Nunito Sans", sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
+`;
+
 export const Post = ({ postId }: Props) => {
   const post = useSelector<AppRootStateType, PostType>(
     (state) => state.posts.byId[postId]
@@ -173,18 +196,18 @@ export const Post = ({ postId }: Props) => {
       </PostHeader>
       <Line></Line>
 
-      <PostComments>
-        <br />
-
-        <ul>
+      <PostBody>
+        <PostBodyItems>
           {post.commentsIds.map((id) => (
             <Comment key={id} id={id} postId={postId} />
           ))}
-        </ul>
-        <button onClick={() => dispatch(fetchPostComment(postId))}>
+        </PostBodyItems>
+        <ButtonShowAllComments
+          onClick={() => dispatch(fetchPostComment(postId))}
+        >
           all comments
-        </button>
-      </PostComments>
+        </ButtonShowAllComments>
+      </PostBody>
 
       <hr />
     </PostContainer>

@@ -48,9 +48,3 @@ body {
     list-style: none;
   }
 `;
-
-// #ffffff post
-// #ebf2fa button
-// #5485bc button text
-// #f0f2f5 for likes
-// box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

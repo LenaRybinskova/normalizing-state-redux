@@ -7,8 +7,74 @@ import {
 } from "features/posts/comments-reducer";
 import { AuthorAPIType } from "api/apiPosts";
 import styled from "styled-components";
+import { ReactComponent as DeleteIcon } from "../../../assets/icons/basket.svg";
 
 const CommentContainer = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ebf2fa;
+  border-radius: 5px;
+
+  padding: 10px;
+  gap: 10px;
+`;
+
+const AvatarAuthor = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+`;
+
+const CommentContent = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  transition-duration: 0.9s;
+
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: none;
+    color: var(--background-like-text-color);
+    background: none;
+    padding: 0;
+  }
+
+  & svg {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  & svg:hover {
+    opacity: 0.5;
+  }
+`;
+
+const CommentContentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-star;
+  flex-grow: 1;
+  font-size: 12px;
+  line-height: 1.5;
+
+  & span {
+    font-weight: 700;
+  }
+`;
+
+const Line = styled.div`
+  border-bottom: 1px solid var(--background-like-color);
 `;
 
 type Props = {
@@ -26,12 +92,19 @@ export const Comment = ({ id, postId }: Props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <CommentContainer>
-      <b>{authorComment.name}</b>
-      <div>Comments: {comment.text}</div>
-      <button onClick={() => dispatch(deletePostComment(postId, id))}>
-        удалить пост
-      </button>
-    </CommentContainer>
+    <>
+      <CommentContainer>
+        <AvatarAuthor src={authorComment.avatar} />
+        <CommentContent>
+          <CommentContentText>
+            <span>{authorComment.name}</span>
+            <p> {comment.text}</p>
+          </CommentContentText>
+          <button onClick={() => dispatch(deletePostComment(postId, id))}>
+            <DeleteIcon />
+          </button>
+        </CommentContent>
+      </CommentContainer>
+    </>
   );
 };
