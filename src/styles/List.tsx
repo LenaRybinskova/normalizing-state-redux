@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import React from "react";
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 900px;
+  width: 600px;
   gap: 15px;
 `;
+
 type Props = {
   children: React.ReactNode;
 };

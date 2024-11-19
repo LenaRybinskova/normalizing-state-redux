@@ -3,7 +3,7 @@ import "./App.css";
 import { PostsPage } from "../src/pages/PostsPage";
 import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
-import styled from "styled-components";
+
 
 
 

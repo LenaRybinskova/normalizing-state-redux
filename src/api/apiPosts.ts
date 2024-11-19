@@ -53,48 +53,48 @@ export const apiPosts = {
                 }
               }
             ]
+          },
+          {
+            id: 2,
+            text: "Angular is an application-design framework and development platform for creating efficient and sophisticated single-page apps.",
+            likes: 11,
+            author: {
+              id: 21,
+              name: "Valera",
+              avatar: ValeraAvatar
+            },
+            lastComments: []
+          },
+          {
+            id: 3,
+            text: "React has a community of millions of developers. On this page we’ve listed some React-related communities that you can be a part of; see the other pages in this section for additional online and in-person learning materials",
+            likes: 100,
+            author: {
+              id: 1,
+              name: "Dima",
+              avatar: DimaAvatar
+            },
+            lastComments: [
+              {
+                id: 900,
+                text: "Света что то написала",
+                author: {
+                  id: 3,
+                  name: "Sveta",
+                  avatar: SvetaAvatar
+                }
+              },
+              {
+                id: 996,
+                text: "Дима что то ответил",
+                author: {
+                  id: 1,
+                  name: "Dima",
+                  avatar: DimaAvatar
+                }
+              }
+            ]
           }
-          // {
-          //   id: 2,
-          //   text: "React",
-          //   likes: 11,
-          //   author: {
-          //     id: 21,
-          //     name: "Valera",
-          //     avatar: ValeraAvatar
-          //   },
-          //   lastComments: []
-          // },
-          // {
-          //   id: 3,
-          //   text: "Angular",
-          //   likes: 100,
-          //   author: {
-          //     id: 1,
-          //     name: "Dima",
-          //     avatar: DimaAvatar
-          //   },
-          //   lastComments: [
-          //     {
-          //       id: 900,
-          //       text: "Света что то написала",
-          //       author: {
-          //         id: 3,
-          //         name: "Sveta",
-          //         avatar: SvetaAvatar
-          //       }
-          //     },
-          //     {
-          //       id: 996,
-          //       text: "Дима что то ответил",
-          //       author: {
-          //         id: 1,
-          //         name: "Dima",
-          //         avatar: DimaAvatar
-          //       }
-          //     }
-          //   ]
-          // }
         ]);
       }, 2000);
     });

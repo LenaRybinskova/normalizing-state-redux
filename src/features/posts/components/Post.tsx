@@ -8,26 +8,30 @@ import { fetchPostComment } from "features/posts/comments-reducer";
 import styled from "styled-components";
 import { ReactComponent as LikeIcon } from "../../../assets/icons/like.svg";
 
-type Props = {
-  postId: number;
-};
-
-const PostContainer = styled.div`
+const PostContainer = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px;
+  background-color: var(--background-post-color);
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 3px 9px 24px 12px;
 `;
+
 const PostHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: var(--background-like-color);
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 const PostTitle = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  transition-duration: 0.9s;
 
   & img {
     width: 80px;
@@ -56,10 +60,11 @@ const StyledTextarea = styled.textarea`
   resize: none;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: var(--background-like-color);
-  transition-duration: 0.5s;
+  background-color: #ffffff;
+  transition-duration: 0.9s;
   border-radius: 15px;
 `;
+
 const PostText = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,6 +78,7 @@ const PostText = styled.div`
     color: var(--text-color-hover);
   }
 `;
+
 const Likes = styled.div`
   display: flex;
   flex-direction: row;
@@ -122,8 +128,13 @@ const ButtonShowAllComments = styled.button`
 
   &:hover {
     opacity: 0.5;
+    text-decoration: underline;
   }
 `;
+
+type Props = {
+  postId: number;
+};
 
 export const Post = ({ postId }: Props) => {
   const post = useSelector<AppRootStateType, PostType>(
@@ -208,8 +219,6 @@ export const Post = ({ postId }: Props) => {
           all comments
         </ButtonShowAllComments>
       </PostBody>
-
-      <hr />
     </PostContainer>
   );
 };

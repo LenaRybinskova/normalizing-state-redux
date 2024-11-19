@@ -11,9 +11,6 @@ const PostsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  background-color: var(--background-post-color);
-  border-radius: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 3px 9px 24px 12px;
 `;
 
 export const PostsPage = () => {

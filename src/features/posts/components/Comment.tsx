@@ -16,7 +16,6 @@ const CommentContainer = styled.li`
   align-items: center;
   background-color: #ebf2fa;
   border-radius: 5px;
-
   padding: 10px;
   gap: 10px;
 `;
@@ -71,10 +70,6 @@ const CommentContentText = styled.div`
   & span {
     font-weight: 700;
   }
-`;
-
-const Line = styled.div`
-  border-bottom: 1px solid var(--background-like-color);
 `;
 
 type Props = {
