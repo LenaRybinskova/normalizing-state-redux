@@ -15,7 +15,7 @@ const CommentContainer = styled.li`
   justify-content: flex-start;
   align-items: center;
   background-color: #ebf2fa;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
   gap: 10px;
 `;

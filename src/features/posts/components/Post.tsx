@@ -14,7 +14,7 @@ const PostContainer = styled.li`
   justify-content: flex-start;
   padding: 10px;
   background-color: var(--background-post-color);
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: rgba(149, 157, 165, 0.2) 3px 9px 24px 12px;
 `;
 
@@ -23,7 +23,7 @@ const PostHeader = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   background-color: var(--background-like-color);
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5px;
 `;
 
@@ -68,6 +68,7 @@ const StyledTextarea = styled.textarea`
 const PostText = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
 
   & span {
     padding: 10px 10px;
@@ -90,7 +91,8 @@ const Likes = styled.div`
   width: fit-content;
   border-radius: 15px;
   color: var(--background-like-text-color);
-  margin: 8px 8px;
+  margin: 8px 8px 0 8px;
+  border: 1px solid var(--background-like-text-color);
 
   & svg {
     width: 18px;
@@ -104,7 +106,7 @@ const PostBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 40px;
+  margin-inline: 40px 10px;
 `;
 
 const PostBodyItems = styled.ul`

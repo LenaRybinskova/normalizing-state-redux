@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 textarea {
-  all: unset; /* Или используйте сброс вручную */
+  all: unset; 
   box-sizing: border-box;
 }
 
