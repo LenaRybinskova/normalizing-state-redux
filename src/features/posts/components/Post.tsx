@@ -92,9 +92,9 @@ const Likes = styled.div`
   padding: 3px 8px;
   width: fit-content;
   border-radius: 15px;
-  color: var(--background-like-text-color);
+  color: var(--text-color);
   margin: 8px 8px 0 8px;
-  border: 1px solid var(--background-like-text-color);
+  border: 1px solid var(--text-color);
 
   & svg {
     width: 18px;
