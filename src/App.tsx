@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { PostsPage } from "../src/pages/PostsPage";
-import { Provider } from "react-redux";
-import { GlobalStyles } from "./styles/GlobalStyles";
+
 import { useState } from "react";
 import { Button } from "../src/features/posts/components/Button";
+import styled from "styled-components";
 
-function App(props: any) {
+function App() {
   const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
@@ -14,14 +14,23 @@ function App(props: any) {
   }, [theme]);
 
   return (
-    <Provider store={props.store}>
-      <GlobalStyles />
+    <>
       <div className="AppContainer">
         <Button text="смена темы" callback={setTheme} theme={theme}></Button>
         <PostsPage />
       </div>
-    </Provider>
+    </>
   );
 }
 
 export default App;
+
+const Ffff = styled.div`
+  background-color: red;
+  width: 100%;
+  height: 500px;
+`;
+
+const Kkkkk = () => {
+  return <Ffff>Loading</Ffff>;
+};
