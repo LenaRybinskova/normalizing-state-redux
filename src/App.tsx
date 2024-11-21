@@ -5,9 +5,9 @@ import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { useState } from "react";
 
+
 function App(props: any) {
   const [theme, setTheme] = useState("light");
-  console.log("theme", theme);
 
   const toggletheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
@@ -15,7 +15,6 @@ function App(props: any) {
 
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
-    console.log("useEffect", theme);
   }, [theme]);
 
   return (

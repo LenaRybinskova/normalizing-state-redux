@@ -25,6 +25,7 @@ const PostHeader = styled.div`
   background-color: var(--background-like-color);
   border-radius: 15px;
   padding: 5px;
+  color: var(--text-color);
 `;
 
 const PostTitle = styled.div`
@@ -60,9 +61,10 @@ const StyledTextarea = styled.textarea`
   resize: none;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   transition-duration: 0.9s;
   border-radius: 15px;
+  color: var(--text-color);
 `;
 
 const PostText = styled.div`
@@ -127,10 +129,13 @@ const ButtonShowAllComments = styled.button`
   border: none;
   font-family: "Nunito Sans", sans-serif;
   cursor: pointer;
+  color: var(--text-color);
+  font-size: 14px;
 
   &:hover {
     opacity: 0.5;
     text-decoration: underline;
+    color: var(--text-color-hover);
   }
 `;
 

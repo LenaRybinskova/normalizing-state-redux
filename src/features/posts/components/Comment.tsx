@@ -14,7 +14,7 @@ const CommentContainer = styled.li`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background-color: #ebf2fa;
+  background-color: var(--background-comment-color);
   border-radius: 10px;
   padding: 10px;
   gap: 10px;
@@ -34,6 +34,7 @@ const CommentContent = styled.div`
   width: 100%;
   gap: 10px;
   transition-duration: 0.9s;
+  color: var(--text-color);
 
   & button {
     display: flex;
