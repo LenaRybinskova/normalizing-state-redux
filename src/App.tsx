@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { useState } from "react";
 
-
 function App(props: any) {
   const [theme, setTheme] = useState("light");
 
@@ -21,8 +20,8 @@ function App(props: any) {
     <Provider store={props.store}>
       <GlobalStyles />
       <div className="AppContainer">
-        <PostsPage />
         <button onClick={toggletheme}>смена темы</button>
+        <PostsPage />
       </div>
     </Provider>
   );

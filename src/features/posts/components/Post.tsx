@@ -4,20 +4,10 @@ import { AppRootStateType, useAppDispatch } from "../../app/store";
 import { useSelector } from "react-redux";
 import { updateAuthor } from "features/posts/authors-reducer";
 import { Comment } from "features/posts/components/Comment";
-import { fetchPostComment } from "features/posts/comments-reducer";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ReactComponent as LikeIcon } from "../../../assets/icons/like.svg";
 import { ButtonShowComments } from "./ButtonShowComments";
-
-const PostContainer = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 10px;
-  background-color: var(--background-post-color);
-  border-radius: 15px;
-  box-shadow: rgba(149, 157, 165, 0.2) 3px 9px 24px 12px;
-`;
+import { Container } from "../../../styles/Container";
 
 const PostHeader = styled.div`
   display: flex;
@@ -56,7 +46,7 @@ const StyledTextarea = styled.textarea`
   height: 40px;
   font-family: var(--primary-font);
   font-size: var(--font-size);
-  border: none;
+  border: 1px solid var(--text-color);
   line-height: 20px;
   padding: 10px 10px;
   resize: none;
@@ -124,22 +114,6 @@ const Line = styled.div`
   margin: 5px;
 `;
 
-const ButtonShowAllComments = styled.button`
-  display: flex;
-  background-color: transparent;
-  border: none;
-  font-family: "Nunito Sans", sans-serif;
-  cursor: pointer;
-  color: var(--text-color);
-  font-size: 14px;
-
-  &:hover {
-    opacity: 0.5;
-    text-decoration: underline;
-    color: var(--text-color-hover);
-  }
-`;
-
 type Props = {
   postId: number;
 };
@@ -163,7 +137,7 @@ export const Post = ({ postId }: Props) => {
   const dispatch = useAppDispatch();
 
   return (
-    <PostContainer>
+    <Container post>
       <PostHeader>
         <PostTitle>
           <img src={author.avatar} />
@@ -222,12 +196,7 @@ export const Post = ({ postId }: Props) => {
           ))}
         </PostBodyItems>
         <ButtonShowComments postId={postId} />
-        {/* <ButtonShowAllComments
-          onClick={() => dispatch(fetchPostComment(postId))}
-        >
-          all comments
-        </ButtonShowAllComments> */}
       </PostBody>
-    </PostContainer>
+    </Container>
   );
 };

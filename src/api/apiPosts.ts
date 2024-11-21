@@ -26,7 +26,7 @@ export const apiPosts = {
         res([
           {
             id: 1,
-            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, a?",
+            text: "Styled-components is the result of wondering how we could enhance CSS for styling React component systems.",
             likes: 10,
             author: {
               id: 1,

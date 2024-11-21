@@ -8,17 +8,9 @@ import {
 import { AuthorAPIType } from "api/apiPosts";
 import styled from "styled-components";
 import { ReactComponent as DeleteIcon } from "../../../assets/icons/basket.svg";
+import {Container} from "../../../styles/Container"
 
-const CommentContainer = styled.li`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: var(--background-comment-color);
-  border-radius: 10px;
-  padding: 10px;
-  gap: 10px;
-`;
+
 
 const AvatarAuthor = styled.img`
   width: 30px;
@@ -89,7 +81,7 @@ export const Comment = ({ id, postId }: Props) => {
 
   return (
     <>
-      <CommentContainer>
+      <Container comment>
         <AvatarAuthor src={authorComment.avatar} />
         <CommentContent>
           <CommentContentText>
@@ -100,7 +92,7 @@ export const Comment = ({ id, postId }: Props) => {
             <DeleteIcon />
           </button>
         </CommentContent>
-      </CommentContainer>
+      </Container>
     </>
   );
 };
