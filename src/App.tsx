@@ -4,13 +4,10 @@ import { PostsPage } from "../src/pages/PostsPage";
 import { Provider } from "react-redux";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { useState } from "react";
+import { Button } from "../src/features/posts/components/Button";
 
 function App(props: any) {
-  const [theme, setTheme] = useState("light");
-
-  const toggletheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
@@ -20,7 +17,7 @@ function App(props: any) {
     <Provider store={props.store}>
       <GlobalStyles />
       <div className="AppContainer">
-        <button onClick={toggletheme}>смена темы</button>
+        <Button text="смена темы" callback={setTheme} theme={theme}></Button>
         <PostsPage />
       </div>
     </Provider>
