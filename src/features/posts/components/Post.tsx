@@ -7,6 +7,7 @@ import { Comment } from "features/posts/components/Comment";
 import { fetchPostComment } from "features/posts/comments-reducer";
 import styled from "styled-components";
 import { ReactComponent as LikeIcon } from "../../../assets/icons/like.svg";
+import { ButtonShowComments } from "./ButtonShowComments";
 
 const PostContainer = styled.li`
   display: flex;
@@ -220,11 +221,12 @@ export const Post = ({ postId }: Props) => {
             <Comment key={id} id={id} postId={postId} />
           ))}
         </PostBodyItems>
-        <ButtonShowAllComments
+        <ButtonShowComments postId={postId} />
+        {/* <ButtonShowAllComments
           onClick={() => dispatch(fetchPostComment(postId))}
         >
           all comments
-        </ButtonShowAllComments>
+        </ButtonShowAllComments> */}
       </PostBody>
     </PostContainer>
   );
