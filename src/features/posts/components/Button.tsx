@@ -9,11 +9,11 @@ const StyledButton = styled.button`
   font-famiy: var(--primary-font);
   color: var(--text-color);
 
-  position: fixed;
-  top: 10px; /* Расстояние от верхнего края окна */
-  left: 50%; /* Центрирование по горизонтали */
-  transform: translateX(-50%); /* Сдвиг, чтобы центрировать по оси X */
-  z-index: 100; /* Убедитесь, что кнопка поверх других элементов */
+  // position: fixed;
+  // top: 10px; 
+  // left: 50%; 
+  // transform: translateX(-50%); 
+  // z-index: 100; 
 
   &: hover {
     background-color: var(--text-color-hover);
