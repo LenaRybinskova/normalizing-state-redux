@@ -1,16 +1,27 @@
-## убрать у PostsPage избыточный ререндер всех дочерних компонент Post:
+## В проекте использовались библиотеки:
 
-### 2 вариант: нормализовать стейт, итеррироваться по массиву ключей( в котором не будет происх измений), в Post передавать id поста, где будет следить useSelector
+- React
+- Redux
+- React-Redux
+- Redux-thunk
+- Styled-component
+- react-loader-spinner
 
- ```
- const state = {
-    allIds:[1, 2],
-    byId:{
-      "1": {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
-      "2": {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
-    }
+---
+
+> ### Убрать у PostsPage избыточный ререндер всех дочерних компонент Post:
+
+> ### 2 вариант: нормализовать стейт, итеррироваться по массиву ключей( в котором не будет происх измений), в Post передавать id поста, где будет следить useSelector
+
+```
+const state = {
+   allIds:[1, 2],
+   byId:{
+     "1": {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
+     "2": {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
+   }
 }
- ```
+```
 
 ```
 export const PostsPage = () => {
@@ -41,35 +52,33 @@ export const Post = ({postId}: Props) => {
 
 ```
 
-
-### 1 вариант: обернуть Post в memo
+> ### 1 вариант: обернуть Post в memo
 
 ```
 const state = {
     items: [
-        {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}}, 
+        {id: 1, text: 'hello', likes: 10, author: {id: 1, name: 'Dima'}},
         {id: 2,text: 'React', likes: 11,author: {id: 21, name: 'Valera'}}
     ]
 }
 ```
 
-
- ```
+```
 export const PostsPage = () => {
-    const items = useSelector((state: AppRootStateType) => state.posts.items);
-    const dispatch = useAppDispatch()
+   const items = useSelector((state: AppRootStateType) => state.posts.items);
+   const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        dispatch(fetchPosts());
-    }, []);
+   useEffect(() => {
+       dispatch(fetchPosts());
+   }, []);
 
-    return (
-        <div>
-            {items.map((i) => (
-                <Post key={i.id} post={i}/>
-            ))}
-        </div>
-    );
+   return (
+       <div>
+           {items.map((i) => (
+               <Post key={i.id} post={i}/>
+           ))}
+       </div>
+   );
 };
 
 ```
