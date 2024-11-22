@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { fetchPosts } from "features/posts/posts-reducer";
 import styled from "styled-components";
 import { List } from "../../src/styles/List";
-import { Status } from "../features/posts/components/app-reducer";
+import { Loader } from "../features/posts/components/Loader";
 
 const PostsContainer = styled.div`
   display: flex;
@@ -23,9 +23,8 @@ export const PostsPage = () => {
     dispatch(fetchPosts());
   }, []);
 
-
   if (ids.length === 0) {
-    return <Kkkkk />;
+    return <Loader />;
   }
 
   return (
@@ -39,12 +38,3 @@ export const PostsPage = () => {
   );
 };
 
-const Ffff = styled.div`
-  background-color: red;
-  width: 100%;
-  height: 500px;
-`;
-
-const Kkkkk = () => {
-  return <Ffff>Loading</Ffff>;
-};

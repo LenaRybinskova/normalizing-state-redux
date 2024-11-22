@@ -25,12 +25,3 @@ function App() {
 
 export default App;
 
-const Ffff = styled.div`
-  background-color: red;
-  width: 100%;
-  height: 500px;
-`;
-
-const Kkkkk = () => {
-  return <Ffff>Loading</Ffff>;
-};

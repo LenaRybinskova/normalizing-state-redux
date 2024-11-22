@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 });
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
-// export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 
 export type AppAllAction = PostsActions | AuthorActions | AppActions;
