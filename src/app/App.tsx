@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import "./App.css";
-import { PostsPage } from "../src/pages/PostsPage";
+import "app/App.css";
+import { PostsPage } from "features/posts/ui/PostsPage";
 import { useState } from "react";
-import { Button } from "../src/features/posts/components/Button";
+import { Button } from "common/components/Button";
 import styled from "styled-components";
 
 const Header = styled.div`
@@ -13,10 +13,10 @@ const Header = styled.div`
 `;
 
 const Content = styled.div`
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 function App() {
