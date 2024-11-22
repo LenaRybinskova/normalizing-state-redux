@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/normalizing-state-redux/static/css/main.d5def37d.css",
-    "main.js": "/normalizing-state-redux/static/js/main.2cfcf097.js",
+    "main.js": "/normalizing-state-redux/static/js/main.85f8e9ca.js",
     "static/media/like.svg": "/normalizing-state-redux/static/media/like.577e60ed67e57a2c9d9e2b090609ed60.svg",
     "index.html": "/normalizing-state-redux/index.html",
     "static/media/basket.svg": "/normalizing-state-redux/static/media/basket.97dc8acdcca7ece89eb2ca6f184a3a16.svg",
     "main.d5def37d.css.map": "/normalizing-state-redux/static/css/main.d5def37d.css.map",
-    "main.2cfcf097.js.map": "/normalizing-state-redux/static/js/main.2cfcf097.js.map"
+    "main.85f8e9ca.js.map": "/normalizing-state-redux/static/js/main.85f8e9ca.js.map"
   },
   "entrypoints": [
     "static/css/main.d5def37d.css",
-    "static/js/main.2cfcf097.js"
+    "static/js/main.85f8e9ca.js"
   ]
 }
